@@ -11497,29 +11497,4 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
-
-.icon-link {
-  color: black;
-  padding-right: 1rem;
-}
-
-.demo {
-  opacity: 0;
-}
-
-.demo-active {
-  opacity: 1;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
-}
-
-.demo-exit {
-  opacity: 1;
-}
-
-.demo-exit-active {
-  opacity: 1;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
-}
-/*# sourceMappingURL=App.css.map */
+/*# sourceMappingURL=bootstrap.css.map */

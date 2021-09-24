@@ -1,1 +1,20 @@
 @import './source/bootstrap-5.0.2/scss/bootstrap';
+
+.icon-link {
+    color: black;
+    padding-right: 1rem;
+}
+.demo {
+    opacity: 0;
+  }
+  .demo-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+  .demo-exit {
+    opacity: 1;
+  }
+  .demo-exit-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
