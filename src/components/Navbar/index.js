@@ -7,16 +7,16 @@ import {
   MobileIcon,
   NavMenu,
   NavItem,
-  NavLinks
+  NavLinks,
 } from './NavbarElements'
 
-function Navbar() {
+function Navbar({ toggle }) {
 
   return (
     <Nav>
       <NavbarContainer>
         <NavLogo to='/'>Lance L</NavLogo>
-        <MobileIcon>
+        <MobileIcon onClick={() => toggle()}>
           <FaBars />
         </MobileIcon>
         <NavMenu>
@@ -36,6 +36,11 @@ function Navbar() {
             </NavLinks>
           </NavItem>
         </NavMenu>
+          {/* <NavBtn> // this part is for signup but for now we don't need this functionality
+            <NavBtnLink to='123'>
+              123123
+            </NavBtnLink>
+          </NavBtn> */}
       </NavbarContainer>
     </Nav>
   )
