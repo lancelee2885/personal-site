@@ -7,14 +7,14 @@ import {CSSTransition} from 'react-transition-group'
 
 import NavBar from './Navbar';
 import Home from './Home';
+import  Navbar  from "./components/Navbar/index";
 
 function App() {
 
-  return (
+  return ( 
     <div className="App">
       <BrowserRouter>
-        <NavBar />
-        <Home />
+        <Navbar />
       </BrowserRouter>
     </div>
   )
