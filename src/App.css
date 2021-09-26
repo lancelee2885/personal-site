@@ -11501,25 +11501,30 @@ fieldset:disabled .btn {
 .icon-link {
   color: black;
   padding-right: 1rem;
+  padding-left: 1rem;
 }
 
-.demo {
+.example-enter {
   opacity: 0;
 }
 
-.demo-active {
+.example-enter.example-enter-active {
   opacity: 1;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
+  -webkit-transition: opacity 500ms;
+  transition: opacity 500ms;
 }
 
-.demo-exit {
+.example-exit {
   opacity: 1;
 }
 
-.demo-exit-active {
-  opacity: 1;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
+.example-exit.example-exit-active {
+  opacity: 0;
+  -webkit-transition: opacity 500ms;
+  transition: opacity 500ms;
+}
+
+.hidden {
+  display: none;
 }
 /*# sourceMappingURL=App.css.map */

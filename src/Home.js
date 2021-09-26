@@ -12,7 +12,7 @@ function Home() {
       <h3>Welcome</h3>
       <h5>This is currently a placeholder page</h5>
       <div>
-        <ProjectCard title="Jobly" description="Jobs" ghLink="https://www.google.com" demoLink="test.com"/>
+        <ProjectCard title="Jobly" description="Get jobs nerd" ghLink="https://www.google.com" demoLink="test.com"/>
       </div>
     </div>
 

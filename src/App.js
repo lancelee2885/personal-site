@@ -11,7 +11,7 @@ import Home from './Home';
 function App() {
 
   return (
-    <div class="App">
+    <div className="App">
       <BrowserRouter>
         <NavBar />
         <Home />
