@@ -15,33 +15,41 @@ import {
   ImgWrapper
 } from './InfoElements'
 
-function InfoSection() {
+function InfoSection({ lightBg, id, imgStart, topLine, lightText, headLine, darkText, description, buttonLabel, img, alt, primary, dark, dark2 }) {
   return (
     <>
-      <InfoContainer>
+      <InfoContainer lightBg={lightBg} id={id}>
         <InfoWrapper>
-          <InfoRow >
+          <InfoRow imgStart={imgStart}>
             <Column1>
               <TextWrapper>
                 <TopLine>
-                  TopLine
+                  {topLine}
                 </TopLine>
-                <Heading>
-                  Heading
+                <Heading lightText={lightText}>
+                  {headLine}
                 </Heading>
-                <Subtitle>
-                  SubTitle
+                <Subtitle darkText={darkText}>
+                  {description}
                 </Subtitle>
                 <BtnWrapper>
-                  <Button to='home' >
-                    Button
+                  <Button to='home'
+                    smooth={true}
+                    duration={500}
+                    spy={true}
+                    exact='true'
+                    offset={-80}
+                    primary={primary ? 1 : 0}
+                    dark={dark ? 1 : 0}
+                    dark2={dark2 ? 1 : 0}>
+                    {buttonLabel}
                   </Button>
                 </BtnWrapper>
               </TextWrapper>
             </Column1>
             <Column2>
               <ImgWrapper>
-                <Img />
+                <Img src={img} alt={alt} />
               </ImgWrapper>
             </Column2>
           </InfoRow>
