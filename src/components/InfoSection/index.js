@@ -32,7 +32,8 @@ function InfoSection({
   primary,
   dark,
   dark2,
-  icons
+  icons,
+  shadow
 }) {
 
   return (
@@ -49,16 +50,14 @@ function InfoSection({
                   {headLine}
                 </Heading>
                 <Subtitle darkText={darkText}>
-                  <p>
                   {description}
-                  </p>
-                  <p>
+                  <br />
+                  <br />
                   {description2}
-                  </p>
-                  <br/>
-                  <h3>
-                  - {icons.map(icon => (<span className='icon-link'><a href={icon['link']}><i className={icon['name']}></i></a></span>))}
-                  </h3>
+                  <br />
+                  <br />
+                  - {icons.map(icon => (<span className='icon-link'><a href={icon['link']}><i className={`${icon['name']} fa-lg`}></i></a></span>))}
+                  <br />
                 </Subtitle>
                 <BtnWrapper>
                   <Button to='home'
@@ -77,7 +76,7 @@ function InfoSection({
             </Column1>
             <Column2>
               <ImgWrapper>
-                <Img src={img} alt={alt} />
+                <Img src={img} alt={alt} shadow={shadow}/>
               </ImgWrapper>
             </Column2>
           </InfoRow>

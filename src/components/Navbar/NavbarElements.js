@@ -4,8 +4,8 @@ import { Link as LinkScroll } from 'react-scroll'
 
 
 export const Nav = styled.nav`
-  background: black;
-  opacity: 0.5;
+  background: ${({scrollNav}) => (scrollNav ? 'gray' : 'transparent')};
+  opacity: ${({scrollNav}) => (scrollNav ? '0.5' : '1')};
   height: 80px;
   margin-top: -80px;
   display: flex;

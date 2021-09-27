@@ -76,7 +76,7 @@ export const Subtitle = styled.p`
   max-width: 440px;
   margin-bottom: 35px;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 28px;
   color: ${({darkText}) => (darkText ? '#010606' : '#fff')};
 `;
 
@@ -94,4 +94,16 @@ export const Img = styled.img`
   width: 100%;
   margin: 0 0 10px 0;
   padding-right: 0;
+  box-shadow: ${({shadow}) => (shadow ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : '')};
+  border-radius: ${({shadow}) => (shadow ? '50px' : '')};
+
+  @media screen and (max-width: 768px) {
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  @media screen and (max-width: 480px) {
+    max-width: 200px;
+    max-height: 200px;
+  }
 `
