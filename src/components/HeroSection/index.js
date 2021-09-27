@@ -32,7 +32,7 @@ function HeroSection() {
           <div>Lance Lee.</div>
         </HeroH1>
         <HeroP>
-          I am a software engineer.
+          A software engineer and scientist.
         </HeroP>
         <HeroBtnWrapper>
           <Button to='about' 

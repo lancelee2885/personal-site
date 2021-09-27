@@ -11527,4 +11527,9 @@ fieldset:disabled .btn {
 .hidden {
   display: none;
 }
+
+i {
+  color: inherit;
+  margin: 10px -10px;
+}
 /*# sourceMappingURL=App.css.map */

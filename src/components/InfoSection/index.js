@@ -15,7 +15,26 @@ import {
   ImgWrapper
 } from './InfoElements'
 
-function InfoSection({ lightBg, id, imgStart, topLine, lightText, headLine, darkText, description, buttonLabel, img, alt, primary, dark, dark2 }) {
+
+function InfoSection({
+  lightBg,
+  id,
+  imgStart,
+  topLine,
+  lightText,
+  headLine,
+  darkText,
+  description,
+  description2,
+  buttonLabel,
+  img,
+  alt,
+  primary,
+  dark,
+  dark2,
+  icons
+}) {
+
   return (
     <>
       <InfoContainer lightBg={lightBg} id={id}>
@@ -30,7 +49,16 @@ function InfoSection({ lightBg, id, imgStart, topLine, lightText, headLine, dark
                   {headLine}
                 </Heading>
                 <Subtitle darkText={darkText}>
+                  <p>
                   {description}
+                  </p>
+                  <p>
+                  {description2}
+                  </p>
+                  <br/>
+                  <h3>
+                  - {icons.map(icon => (<span className='icon-link'><a href={icon['link']}><i className={icon['name']}></i></a></span>))}
+                  </h3>
                 </Subtitle>
                 <BtnWrapper>
                   <Button to='home'
