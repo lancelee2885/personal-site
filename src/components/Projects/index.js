@@ -1,38 +1,82 @@
-import React from 'react'
-import { 
-  ProjectsContanier, 
-  ProjectsH1, 
-  ProjectsWrapper, 
-  ProjectsCard, 
-  ProjectsIcon, 
-  ProjectsH2, 
-  ProjectsP } from './ProjectElements'
+import React, { useState } from 'react'
+import {
+  ProjectsContanier,
+  ProjectsH1,
+  ProjectsWrapper,
+  ProjectsCard,
+  ProjectsIcon,
+  ProjectsH2,
+  ProjectsP
+} from './ProjectElements'
+import Collapse from 'react-bootstrap/Collapse'
 
-  import Icon1 from '../../images/svg-1.svg'
-  import Icon2 from '../../images/svg-1.svg'
-  import Icon3  from '../../images/svg-1.svg'
-  
-  function Projects() {
+
+import joblyImg from '../../images/jobly.svg'
+import warblerImg from '../../images/warbler.svg'
+import sisImg from '../../images/sis.svg'
+
+function Projects() {
+
+  const [isShown1, setIsShown1] = useState(false);
+  const [isShown2, setIsShown2] = useState(false);
+  const [isShown3, setIsShown3] = useState(false);
+
   return (
     <ProjectsContanier id='projects'>
       <ProjectsH1>
         My Projects
       </ProjectsH1>
       <ProjectsWrapper>
-        <ProjectsCard>
-          <ProjectsIcon src={Icon1} />
+        <ProjectsCard onMouseEnter={() => setIsShown1(true)}
+          onMouseLeave={() => setIsShown1(false)}>
+          <ProjectsIcon src={joblyImg} />
           <ProjectsH2>Jobly</ProjectsH2>
-          <ProjectsP>Paragraph</ProjectsP>
+          <Collapse in={isShown1}>
+            <ProjectsP>
+              Front-end for a job listing application focusing on React
+              component design and connecting backend with Restful API.
+              <hr />
+              <a href='https://github.com/lancelee2885/react-jobly'>
+                <i className="fab fa-github-square fa-2x iconCard"></i>
+              </a>
+              <a href='http://jobly-lance.surge.sh/'>
+                <i class="fas fa-window-maximize fa-2x iconCard" ></i>
+              </a>
+            </ProjectsP>
+          </Collapse>
         </ProjectsCard>
-        <ProjectsCard>
-          <ProjectsIcon src={Icon2} />
+        <ProjectsCard
+          onMouseEnter={() => setIsShown2(true)}
+          onMouseLeave={() => setIsShown2(false)}>
+          <ProjectsIcon src={warblerImg} />
           <ProjectsH2>Warbler</ProjectsH2>
-          <ProjectsP>Paragraph</ProjectsP>
+          <Collapse in={isShown2}>
+            <ProjectsP>
+              A Twitter clone using Javascript(AJAX), Python, Flask and PostgreSQL
+              <hr />
+              <a href='https://github.com/lancelee2885/warbler'>
+                <i className="fab fa-github-square fa-2x iconCard"></i>
+              </a>
+              <a href='https://warbler-ivan-lance.herokuapp.com/'>
+                <i class="fas fa-window-maximize fa-2x iconCard" ></i>
+              </a>
+            </ProjectsP>
+          </Collapse>
         </ProjectsCard>
-        <ProjectsCard>
-          <ProjectsIcon src={Icon3} />
+        <ProjectsCard
+          onMouseEnter={() => setIsShown3(true)}
+          onMouseLeave={() => setIsShown3(false)}>
+          <ProjectsIcon src={sisImg} />
           <ProjectsH2>Students Mobile Portal</ProjectsH2>
-          <ProjectsP>Paragraph</ProjectsP>
+          <Collapse in={isShown3}>
+            <ProjectsP>
+              A page designed by using SwiftUI for displaying upcoming topics of current curriculum.
+              <hr />
+              <a href='https://github.com/lancelee2885/mobile-rithm-SIS'>
+                <i className="fab fa-github-square fa-2x iconCard"></i>
+              </a>
+            </ProjectsP>
+          </Collapse>
         </ProjectsCard>
       </ProjectsWrapper>
 

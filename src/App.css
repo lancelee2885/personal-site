@@ -11533,6 +11533,11 @@ i {
   margin: 10px -10px;
 }
 
+.iconCard {
+  color: gray;
+  margin: auto 10px;
+}
+
 .logo {
   width: 3rem;
   height: 3rem;

@@ -1,5 +1,6 @@
 import img1 from '../../images/svg-1.svg'
 import lui from '../../images/Lui.png'
+import construction from '../../images/construction.svg'
 
 export const homeObjOne = {
   id: 'about',
@@ -34,14 +35,14 @@ export const homeObjTwo = {
   lightBg: true,
   lightText: false,
   lightTextDesc: true,
-  topLine: 'TopLine About',
-  headLine: 'HeadLine About',
-  description: 'Description About',
+  topLine: 'In Construction ...',
+  headLine: '',
+  description: '',
   description2: '',
-  buttonLabel: 'Button About',
+  buttonLabel: '',
   imgStart: false,
-  img:  img1, 
-  alt: 'About Alt',
+  img:  construction, 
+  alt: '',
   dark: false,
   primary: false,
   darkText: true, 
@@ -58,7 +59,7 @@ export const homeObjThree = {
   description: 'Description About',
   buttonLabel: 'Button About',
   imgStart: true,
-  img:  img1, 
+  img:  construction, 
   alt: 'About Alt',
   dark: false,
   primary: false,

@@ -56,7 +56,7 @@ function InfoSection({
                   {description2}
                   <br />
                   <br />
-                  - {icons.map(icon => (<span className='icon-link'><a href={icon['link']}><i className={`${icon['name']} fa-lg`}></i></a></span>))}
+                  {icons.map(icon => (<span className='icon-link'><a href={icon['link']}><i className={`${icon['name']} fa-lg`}></i></a></span>))}
                   <br />
                 </Subtitle>
                 <BtnWrapper>

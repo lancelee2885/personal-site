@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ProjectsContanier = styled.div`
-  height: 900px;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,15 +44,25 @@ export const ProjectsCard = styled.div`
   justify-content: flex-start;
   align-items: center;
   border-radius: 10px;
-  max-height: 340px;
+  max-height: 400px;
+  width: 340px;
   padding: 30px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   transition: all 0.2s ease-in-out;
 
+  @media screen and (max-width: 768px){
+    max-height: 500px;
+    width: 220px;
+  }
+
+  @media screen and (max-width: 480px){
+    max-height: 500px;
+    width: 180px;
+  }
+
   &:hover {
     transform: scale(1.02);
     transition: all 0.2s ease-in-out;
-    cursor: pointer;
   }
  `;
 
