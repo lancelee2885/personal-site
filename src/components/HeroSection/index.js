@@ -22,16 +22,17 @@ function HeroSection() {
   }
 
   return (
-    <HeroCountainer>
+    <HeroCountainer id='/'>
       <HeroBg>
         <VideoBg autoPlay loop muted src={Video} type='video/mp4' />
       </HeroBg>
       <HeroContent>
         <HeroH1>
-          Lance Lee
+          <h6>Hello, I am</h6>
+          <div>Lance Lee.</div>
         </HeroH1>
         <HeroP>
-          I am a placeholder
+          I am a software engineer.
         </HeroP>
         <HeroBtnWrapper>
           <Button to='about' 
@@ -39,7 +40,7 @@ function HeroSection() {
                   onMouseLeave={onHover}
                   primary='true'
                   dark='true'>
-            More Details {hover ? <ArrowForward /> : <ArrowRight />}
+            See who I am {hover ? <ArrowForward /> : <ArrowRight />}
           </Button>
         </HeroBtnWrapper>
       </HeroContent>
