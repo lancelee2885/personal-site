@@ -11529,7 +11529,12 @@ fieldset:disabled .btn {
 }
 
 i {
-  color: inherit;
+  color: gray;
   margin: 10px -10px;
+}
+
+.logo {
+  width: 3rem;
+  height: 3rem;
 }
 /*# sourceMappingURL=App.css.map */

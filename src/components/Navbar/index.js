@@ -9,13 +9,14 @@ import {
   NavItem,
   NavLinks,
 } from './NavbarElements'
+import logo from '../../images/LanceLogo-removebg-preview.png'
 
 function Navbar({ toggle }) {
 
   return (
     <Nav>
       <NavbarContainer>
-        <NavLogo to='/'>Lance L</NavLogo>
+        <NavLogo to='/'><img className='logo' src={logo}></img></NavLogo>
         <MobileIcon onClick={() => toggle()}>
           <FaBars />
         </MobileIcon>
