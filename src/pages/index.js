@@ -19,9 +19,8 @@ const Home = () => {
       <Navbar isOpen={isOpen} toggle={toggle} />
       <HeroSection />
       <InfoSection {...homeObjOne}/>
+        <Projects id='projects'/>
       <InfoSection {...homeObjTwo}/>
-      <Projects />
-      <InfoSection {...homeObjThree}/>
     </>
   )
 }
