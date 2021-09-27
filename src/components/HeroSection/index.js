@@ -24,7 +24,7 @@ function HeroSection() {
   return (
     <HeroCountainer id='/'>
       <HeroBg>
-        <VideoBg autoPlay loop muted src={Video} type='video/mp4' />
+        <VideoBg autoPlay loop muted src='https://personal-site-lance.s3.us-west-1.amazonaws.com/Hero.mp4' type='video/mp4' />
       </HeroBg>
       <HeroContent>
         <HeroH1>
