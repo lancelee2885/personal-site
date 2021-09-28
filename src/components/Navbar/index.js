@@ -48,8 +48,7 @@ function Navbar({ toggle }) {
                         smooth={true}
                         duration={300}
                         spy={true}
-                        exact='true'
-                        offset={-80}>
+                        exact='true'>
                 About
               </NavLinks>
             </NavItem>
@@ -58,8 +57,7 @@ function Navbar({ toggle }) {
                         smooth={true}
                         duration={300}
                         spy={true}
-                        exact='true'
-                        offset={-80}>
+                        exact='true'>
                 Projects
               </NavLinks>
             </NavItem>
@@ -68,8 +66,7 @@ function Navbar({ toggle }) {
                         smooth={true}
                         duration={300}
                         spy={true}
-                        exact='true'
-                        offset={-80}>
+                        exact='true'>
                 Skills
               </NavLinks>
             </NavItem>
