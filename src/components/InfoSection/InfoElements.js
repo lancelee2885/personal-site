@@ -109,8 +109,8 @@ export const Img = styled.img`
 `
 export const SkillWrapper = styled.div`
   max-width: 1100px;
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  justify-content: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
 

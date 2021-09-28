@@ -50,15 +50,15 @@ function SkillSection({
                 </Heading>
                 <SkillWrapper>
                   <Subtitle darkText={darkText}>
-                    <b>{description1}</b>
+                    <b>{description1}</b><br/>
                     {langSkills.map(lang => (<small>{lang} <br /></small>))}
                   </Subtitle>
                   <Subtitle darkText={darkText}>
-                    <b>{description2}</b>
+                    <b>{description2}</b><br/>
                     {frameworkSkills.map(framework => (<small>{framework} <br /></small>))}
                   </Subtitle>
                   <Subtitle darkText={darkText}>
-                    <b>{description3}</b>
+                    <b>{description3}</b><br/>
                     {tools.map(tool => (<small>{tool} <br /></small>))}
                   </Subtitle>
                 </SkillWrapper>
