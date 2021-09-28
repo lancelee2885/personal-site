@@ -66,7 +66,7 @@ export const Skills = {
   frameworkSkills: ['React', 'Express.js', 'jQuery', 'AJAX', 'Flask', 'Django', 'SQLAlchemy', 'Jest'],
   tools: ['Node.js', 'BootStrap', 'PostgreSQL', 'AWS S3', 'AWS Amplify', 'Git Workflow'],
   buttonLabel: '',
-  imgStart: false,
+  imgStart: true,
   img:  skills, 
   alt: 'skills',
   dark: false,

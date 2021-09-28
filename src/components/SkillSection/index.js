@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '../ButtonElement'
 import {
   InfoContainer,
   InfoWrapper,
@@ -33,12 +32,13 @@ function SkillSection({
   langSkills,
   frameworkSkills,
   tools,
+  extendHeight,
 }) {
 
   return (
     <>
       <InfoContainer lightBg={lightBg} id={id}>
-        <InfoWrapper>
+        <InfoWrapper extendHeight={true}>
           <InfoRow imgStart={imgStart}>
             <Column1>
               <TextWrapper>

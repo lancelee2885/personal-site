@@ -19,6 +19,10 @@ export const InfoWrapper = styled.div`
   margin-left: auto;
   padding: 0 24px;
   justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    height: ${({extendHeight}) => (extendHeight ? '1100px' : '860px')};
+  }
 `;
 
 export const InfoRow = styled.div`
@@ -103,8 +107,8 @@ export const Img = styled.img`
   }
 
   @media screen and (max-width: 480px) {
-    max-width: 180px;
-    max-height: 180px;
+    max-width: 150px;
+    max-height: 150px;
   }
 `
 export const SkillWrapper = styled.div`
