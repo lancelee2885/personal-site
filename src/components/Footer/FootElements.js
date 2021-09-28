@@ -75,6 +75,7 @@ export const FooterLinkScroll = styled(LinkScroll)`
 
   &:hover {
     color: #01bf71;
+    cursor: pointer;
     transition: 0.3s ease-out;
   }
 `;

@@ -29,7 +29,6 @@ function SkillSection({
   description3,
   img,
   alt,
-  icons,
   shadow,
   langSkills,
   frameworkSkills,
