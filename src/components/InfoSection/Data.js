@@ -1,8 +1,8 @@
-import img1 from '../../images/svg-1.svg'
 import lui from '../../images/Lui.png'
 import construction from '../../images/construction.svg'
+import skills from '../../images/skills.svg'
 
-export const homeObjOne = {
+export const About = {
   id: 'about',
   lightBg: true,
   lightText: false,
@@ -28,6 +28,7 @@ export const homeObjOne = {
           {name: 'fab fa-github-square', link: 'https://github.com/lancelee2885'},
           {name: 'fas fa-envelope-square', link: 'mailto:lancelee2885@gmail.com'}],
   shadow: true,
+  hasButton: true,
   }
 
 export const homeObjTwo = {
@@ -35,9 +36,9 @@ export const homeObjTwo = {
   lightBg: true,
   lightText: false,
   lightTextDesc: true,
-  topLine: 'In Construction ...',
-  headLine: '',
-  description: '',
+  topLine: 'These are what I have experienced',
+  headLine: 'SKILLS',
+  description: 'Languages -',
   description2: '',
   buttonLabel: '',
   imgStart: false,
@@ -46,22 +47,31 @@ export const homeObjTwo = {
   dark: false,
   primary: false,
   darkText: true, 
-  icons: []
+  icons: [],
+  hasButton: false,
 }
 
-export const homeObjThree = {
+
+export const Skills = {
   id: 'skills',
   lightBg: true,
   lightText: false,
   lightTextDesc: true,
-  topLine: 'TopLine About',
-  headLine: 'HeadLine About',
-  description: 'Description About',
-  buttonLabel: 'Button About',
-  imgStart: true,
-  img:  construction, 
-  alt: 'About Alt',
+  topLine: 'These are what I have experienced',
+  headLine: 'SKILLS',
+  description1: 'Languages -',
+  description2: 'Frameworks/Libraries -',
+  description3: 'Tools - ',
+  langSkills: ['Javascript', 'Python', 'SQL', 'CSS/SASS', 'HTML'],
+  frameworkSkills: ['React', 'Express.js', 'jQuery', 'AJAX', 'Flask', 'Django', 'SQLAlchemy', 'Jest'],
+  tools: ['Node.js', 'BootStrap', 'PostgreSQL', 'AWS S3', 'AWS Amplify', 'Git Workflow'],
+  buttonLabel: '',
+  imgStart: false,
+  img:  skills, 
+  alt: '',
   dark: false,
   primary: false,
   darkText: true, 
+  icons: [],
+  hasButton: false,
 }

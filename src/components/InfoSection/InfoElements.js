@@ -75,7 +75,7 @@ export const Heading = styled.h1`
 export const Subtitle = styled.p`
   max-width: 440px;
   margin-bottom: 35px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 28px;
   color: ${({darkText}) => (darkText ? '#010606' : '#fff')};
 `;
@@ -91,19 +91,35 @@ export const ImgWrapper = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
-  margin: 0 0 10px 0;
+  width: 80%;
+  margin: 0 0 40px 40px;
   padding-right: 0;
   box-shadow: ${({shadow}) => (shadow ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : '')};
   border-radius: ${({shadow}) => (shadow ? '50px' : '')};
 
   @media screen and (max-width: 768px) {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 250px;
+    max-height: 250px;
   }
 
   @media screen and (max-width: 480px) {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 180px;
+    max-height: 180px;
   }
 `
+export const SkillWrapper = styled.div`
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-evenly;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 0 20px; 
+  }
+`;
