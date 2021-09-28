@@ -33,8 +33,8 @@ function Projects() {
           <ProjectsH2>Jobly</ProjectsH2>
           <Collapse in={isShown1}>
             <ProjectsP>
-              Front-end for a job listing application focusing on React
-              component design and connecting backend with Restful API.
+              Job listing application focusing on React
+              and connecting backend with Restful API.
               <hr />
               <a href='https://github.com/lancelee2885/react-jobly'>
                 <i className="fab fa-github-square fa-2x iconCard"></i>
