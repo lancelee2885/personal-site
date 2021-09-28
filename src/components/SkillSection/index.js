@@ -32,7 +32,6 @@ function SkillSection({
   langSkills,
   frameworkSkills,
   tools,
-  extendHeight,
 }) {
 
   return (

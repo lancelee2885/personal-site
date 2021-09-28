@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../ButtonElement'
+import { Button, ButtonExternal } from '../ButtonElement'
 import {
   InfoContainer,
   InfoWrapper,
@@ -34,7 +34,8 @@ function InfoSection({
   dark2,
   icons,
   shadow,
-  hasButton
+  hasButton,
+  buttonLink
 }) {
 
   return (
@@ -62,17 +63,15 @@ function InfoSection({
                 </Subtitle>
                 {hasButton
                   ? (<BtnWrapper>
-                    <Button to='home'
+                    <ButtonExternal to={{ pathname: 'https://personal-site-lance.s3.us-west-1.amazonaws.com/lance-resume-2021.pdf' }} target="_blank"
                       smooth={true}
                       duration={500}
-                      spy={true}
-                      exact='true'
                       offset={-80}
                       primary={primary ? 1 : 0}
                       dark={dark ? 1 : 0}
                       dark2={dark2 ? 1 : 0}>
                       {buttonLabel}
-                    </Button>
+                    </ButtonExternal>
                   </BtnWrapper>) :
                   <></>}
               </TextWrapper>

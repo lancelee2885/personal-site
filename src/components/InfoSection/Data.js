@@ -17,6 +17,7 @@ export const About = {
                  I believed both fields are very similar in terms of critical thinking and project management. If you would like 
                  to know more about me feel free to hit any links below.`,
   buttonLabel: 'Here is my most recent resume',
+  buttonLink: 'https://personal-site-lance.s3.us-west-1.amazonaws.com/lance-resume-2021.pdf',
   imgStart: true,
   img:  lui, 
   alt: 'lui the cat',
