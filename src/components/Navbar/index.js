@@ -38,14 +38,13 @@ function Navbar({ toggle }) {
     <IconContext.Provider value={{ color: '#fff' }}>
       <Nav scrollNav={scrollNav}>
         <NavbarContainer>
-          <NavLogo to='/' onClick={toggleHome}><img className='logo' src={logo}></img></NavLogo>
+          <NavLogo to='/' onClick={toggleHome}><img className='logo' alt='lance-logo' src={logo}></img></NavLogo>
           <MobileIcon onClick={() => toggle()}>
             <FaBars />
           </MobileIcon>
           <NavMenu>
             <NavItem>
               <NavLinks to='about'
-                        smooth={true}
                         duration={300}
                         spy={true}
                         exact='true'>
@@ -54,7 +53,6 @@ function Navbar({ toggle }) {
             </NavItem>
             <NavItem>
               <NavLinks to='projects'
-                        smooth={true}
                         duration={300}
                         spy={true}
                         exact='true'>
@@ -63,7 +61,6 @@ function Navbar({ toggle }) {
             </NavItem>
             <NavItem>
               <NavLinks to='skills'
-                        smooth={true}
                         duration={300}
                         spy={true}
                         exact='true'>
