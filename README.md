@@ -8,7 +8,7 @@ You can view the deployed site [here](https://www.leehplance.com/).
 
 ## Documentation
 
-![Personal-site Documentation](https://lancelee2885.github.io/personal-site/)
+[Personal-site Documentation](https://lancelee2885.github.io/personal-site/)
 
 <br>
 
