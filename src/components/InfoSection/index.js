@@ -15,7 +15,31 @@ import {
   ImgWrapper
 } from './InfoElements'
 
-
+/** InfoSection: Renders about section of the application
+ * 
+ * Props: props contains {
+  lightBg, 
+  id, 
+  imgStart, 
+  topLine,
+  lightText,
+  headLine,
+  darkText,
+  description,
+  description2,
+  buttonLabel,
+  img,
+  alt,
+  primary,
+  dark,
+  dark2,
+  icons,
+  shadow,
+  hasButton }. These properties are necessary for displaying data and styles on page.
+ *  
+ * @category React Components
+ * @component
+ */
 function InfoSection({
   lightBg,
   id,
@@ -35,7 +59,6 @@ function InfoSection({
   icons,
   shadow,
   hasButton,
-  buttonLink
 }) {
 
   return (

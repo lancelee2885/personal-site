@@ -15,6 +15,18 @@ import joblyImg from '../../images/jobly.svg'
 import warblerImg from '../../images/warbler.svg'
 import sisImg from '../../images/sis.svg'
 
+/** Projects: Projects section of the page. 
+ * Used react-bootstrap/Collapse for collapsing animation.
+ * 
+ * States:
+ *  - isShown1: for determining whether a project card 
+ *    should be collapsed or not depending on hover effect.
+ *  - isShown2
+ *  - isShown3
+ * 
+ * @category React Components
+ * @component
+ */
 function Projects() {
 
   const [isShown1, setIsShown1] = useState(false);

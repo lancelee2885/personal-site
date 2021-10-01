@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> js/src/carousel.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="Button.html">Button</a></li><li><a href="Carousel.html">Carousel</a></li><li><a href="Collapse.html">Collapse</a></li><li><a href="Dropdown.html">Dropdown</a></li><li><a href="Modal.html">Modal</a></li><li><a href="Offcanvas.html">Offcanvas</a></li><li><a href="Popover.html">Popover</a></li><li><a href="ScrollSpy.html">ScrollSpy</a></li><li><a href="Tab.html">Tab</a></li><li><a href="Toast.html">Toast</a></li><li><a href="Tooltip.html">Tooltip</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DATA_URL_PATTERN">DATA_URL_PATTERN</a></li><li><a href="global.html#Default$6">Default$6</a></li><li><a href="global.html#elementMap">elementMap</a></li><li><a href="global.html#getNextActiveElement">getNextActiveElement</a></li><li><a href="global.html#getUID">getUID</a></li><li><a href="global.html#getUidEvent">getUidEvent</a></li><li><a href="global.html#MAX_UID">MAX_UID</a></li><li><a href="global.html#NAME">NAME</a></li><li><a href="global.html#NAME$1">NAME$1</a></li><li><a href="global.html#NAME$2">NAME$2</a></li><li><a href="global.html#NAME$3">NAME$3</a></li><li><a href="global.html#NAME$4">NAME$4</a></li><li><a href="global.html#NAME$5">NAME$5</a></li><li><a href="global.html#NAME$6">NAME$6</a></li><li><a href="global.html#NAME$8">NAME$8</a></li><li><a href="global.html#NAME$9">NAME$9</a></li><li><a href="global.html#NAME$a">NAME$a</a></li><li><a href="global.html#NAME$b">NAME$b</a></li><li><a href="global.html#NAME$c">NAME$c</a></li><li><a href="global.html#namespaceRegex">namespaceRegex</a></li><li><a href="global.html#NODE_TEXT">NODE_TEXT</a></li><li><a href="global.html#normalizeData">normalizeData</a></li><li><a href="global.html#SAFE_URL_PATTERN">SAFE_URL_PATTERN</a></li><li><a href="global.html#SELECTOR_FIXED_CONTENT">SELECTOR_FIXED_CONTENT</a></li><li><a href="global.html#uriAttrs">uriAttrs</a></li><li><a href="global.html#VERSION">VERSION</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>js/src/carousel.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * --------------------------------------------------------------------------
+ * Bootstrap (v5.0.2): carousel.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * --------------------------------------------------------------------------
+ */
+
+import {
+  defineJQueryPlugin,
+  getElementFromSelector,
+  isRTL,
+  isVisible,
+  getNextActiveElement,
+  reflow,
+  triggerTransitionEnd,
+  typeCheckConfig
+} from './util/index'
+import EventHandler from './dom/event-handler'
+import Manipulator from './dom/manipulator'
+import SelectorEngine from './dom/selector-engine'
+import BaseComponent from './base-component'
+
+/**
+ * ------------------------------------------------------------------------
+ * Constants
+ * ------------------------------------------------------------------------
+ */
+
+const NAME = 'carousel'
+const DATA_KEY = 'bs.carousel'
+const EVENT_KEY = `.${DATA_KEY}`
+const DATA_API_KEY = '.data-api'
+
+const ARROW_LEFT_KEY = 'ArrowLeft'
+const ARROW_RIGHT_KEY = 'ArrowRight'
+const TOUCHEVENT_COMPAT_WAIT = 500 // Time for mouse compat events to fire after touch
+const SWIPE_THRESHOLD = 40
+
+const Default = {
+  interval: 5000,
+  keyboard: true,
+  slide: false,
+  pause: 'hover',
+  wrap: true,
+  touch: true
+}
+
+const DefaultType = {
+  interval: '(number|boolean)',
+  keyboard: 'boolean',
+  slide: '(boolean|string)',
+  pause: '(string|boolean)',
+  wrap: 'boolean',
+  touch: 'boolean'
+}
+
+const ORDER_NEXT = 'next'
+const ORDER_PREV = 'prev'
+const DIRECTION_LEFT = 'left'
+const DIRECTION_RIGHT = 'right'
+
+const KEY_TO_DIRECTION = {
+  [ARROW_LEFT_KEY]: DIRECTION_RIGHT,
+  [ARROW_RIGHT_KEY]: DIRECTION_LEFT
+}
+
+const EVENT_SLIDE = `slide${EVENT_KEY}`
+const EVENT_SLID = `slid${EVENT_KEY}`
+const EVENT_KEYDOWN = `keydown${EVENT_KEY}`
+const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY}`
+const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY}`
+const EVENT_TOUCHSTART = `touchstart${EVENT_KEY}`
+const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY}`
+const EVENT_TOUCHEND = `touchend${EVENT_KEY}`
+const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY}`
+const EVENT_POINTERUP = `pointerup${EVENT_KEY}`
+const EVENT_DRAG_START = `dragstart${EVENT_KEY}`
+const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
+const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
+
+const CLASS_NAME_CAROUSEL = 'carousel'
+const CLASS_NAME_ACTIVE = 'active'
+const CLASS_NAME_SLIDE = 'slide'
+const CLASS_NAME_END = 'carousel-item-end'
+const CLASS_NAME_START = 'carousel-item-start'
+const CLASS_NAME_NEXT = 'carousel-item-next'
+const CLASS_NAME_PREV = 'carousel-item-prev'
+const CLASS_NAME_POINTER_EVENT = 'pointer-event'
+
+const SELECTOR_ACTIVE = '.active'
+const SELECTOR_ACTIVE_ITEM = '.active.carousel-item'
+const SELECTOR_ITEM = '.carousel-item'
+const SELECTOR_ITEM_IMG = '.carousel-item img'
+const SELECTOR_NEXT_PREV = '.carousel-item-next, .carousel-item-prev'
+const SELECTOR_INDICATORS = '.carousel-indicators'
+const SELECTOR_INDICATOR = '[data-bs-target]'
+const SELECTOR_DATA_SLIDE = '[data-bs-slide], [data-bs-slide-to]'
+const SELECTOR_DATA_RIDE = '[data-bs-ride="carousel"]'
+
+const POINTER_TYPE_TOUCH = 'touch'
+const POINTER_TYPE_PEN = 'pen'
+
+/**
+ * ------------------------------------------------------------------------
+ * Class Definition
+ * ------------------------------------------------------------------------
+ */
+class Carousel extends BaseComponent {
+  constructor(element, config) {
+    super(element)
+
+    this._items = null
+    this._interval = null
+    this._activeElement = null
+    this._isPaused = false
+    this._isSliding = false
+    this.touchTimeout = null
+    this.touchStartX = 0
+    this.touchDeltaX = 0
+
+    this._config = this._getConfig(config)
+    this._indicatorsElement = SelectorEngine.findOne(SELECTOR_INDICATORS, this._element)
+    this._touchSupported = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0
+    this._pointerEvent = Boolean(window.PointerEvent)
+
+    this._addEventListeners()
+  }
+
+  // Getters
+
+  static get Default() {
+    return Default
+  }
+
+  static get NAME() {
+    return NAME
+  }
+
+  // Public
+
+  next() {
+    this._slide(ORDER_NEXT)
+  }
+
+  nextWhenVisible() {
+    // Don't call next when the page isn't visible
+    // or the carousel or its parent isn't visible
+    if (!document.hidden &amp;&amp; isVisible(this._element)) {
+      this.next()
+    }
+  }
+
+  prev() {
+    this._slide(ORDER_PREV)
+  }
+
+  pause(event) {
+    if (!event) {
+      this._isPaused = true
+    }
+
+    if (SelectorEngine.findOne(SELECTOR_NEXT_PREV, this._element)) {
+      triggerTransitionEnd(this._element)
+      this.cycle(true)
+    }
+
+    clearInterval(this._interval)
+    this._interval = null
+  }
+
+  cycle(event) {
+    if (!event) {
+      this._isPaused = false
+    }
+
+    if (this._interval) {
+      clearInterval(this._interval)
+      this._interval = null
+    }
+
+    if (this._config &amp;&amp; this._config.interval &amp;&amp; !this._isPaused) {
+      this._updateInterval()
+
+      this._interval = setInterval(
+        (document.visibilityState ? this.nextWhenVisible : this.next).bind(this),
+        this._config.interval
+      )
+    }
+  }
+
+  to(index) {
+    this._activeElement = SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element)
+    const activeIndex = this._getItemIndex(this._activeElement)
+
+    if (index > this._items.length - 1 || index &lt; 0) {
+      return
+    }
+
+    if (this._isSliding) {
+      EventHandler.one(this._element, EVENT_SLID, () => this.to(index))
+      return
+    }
+
+    if (activeIndex === index) {
+      this.pause()
+      this.cycle()
+      return
+    }
+
+    const order = index > activeIndex ?
+      ORDER_NEXT :
+      ORDER_PREV
+
+    this._slide(order, this._items[index])
+  }
+
+  // Private
+
+  _getConfig(config) {
+    config = {
+      ...Default,
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
+    }
+    typeCheckConfig(NAME, config, DefaultType)
+    return config
+  }
+
+  _handleSwipe() {
+    const absDeltax = Math.abs(this.touchDeltaX)
+
+    if (absDeltax &lt;= SWIPE_THRESHOLD) {
+      return
+    }
+
+    const direction = absDeltax / this.touchDeltaX
+
+    this.touchDeltaX = 0
+
+    if (!direction) {
+      return
+    }
+
+    this._slide(direction > 0 ? DIRECTION_RIGHT : DIRECTION_LEFT)
+  }
+
+  _addEventListeners() {
+    if (this._config.keyboard) {
+      EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event))
+    }
+
+    if (this._config.pause === 'hover') {
+      EventHandler.on(this._element, EVENT_MOUSEENTER, event => this.pause(event))
+      EventHandler.on(this._element, EVENT_MOUSELEAVE, event => this.cycle(event))
+    }
+
+    if (this._config.touch &amp;&amp; this._touchSupported) {
+      this._addTouchEventListeners()
+    }
+  }
+
+  _addTouchEventListeners() {
+    const start = event => {
+      if (this._pointerEvent &amp;&amp; (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH)) {
+        this.touchStartX = event.clientX
+      } else if (!this._pointerEvent) {
+        this.touchStartX = event.touches[0].clientX
+      }
+    }
+
+    const move = event => {
+      // ensure swiping with one touch and not pinching
+      this.touchDeltaX = event.touches &amp;&amp; event.touches.length > 1 ?
+        0 :
+        event.touches[0].clientX - this.touchStartX
+    }
+
+    const end = event => {
+      if (this._pointerEvent &amp;&amp; (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH)) {
+        this.touchDeltaX = event.clientX - this.touchStartX
+      }
+
+      this._handleSwipe()
+      if (this._config.pause === 'hover') {
+        // If it's a touch-enabled device, mouseenter/leave are fired as
+        // part of the mouse compatibility events on first tap - the carousel
+        // would stop cycling until user tapped out of it;
+        // here, we listen for touchend, explicitly pause the carousel
+        // (as if it's the second time we tap on it, mouseenter compat event
+        // is NOT fired) and after a timeout (to allow for mouse compatibility
+        // events to fire) we explicitly restart cycling
+
+        this.pause()
+        if (this.touchTimeout) {
+          clearTimeout(this.touchTimeout)
+        }
+
+        this.touchTimeout = setTimeout(event => this.cycle(event), TOUCHEVENT_COMPAT_WAIT + this._config.interval)
+      }
+    }
+
+    SelectorEngine.find(SELECTOR_ITEM_IMG, this._element).forEach(itemImg => {
+      EventHandler.on(itemImg, EVENT_DRAG_START, e => e.preventDefault())
+    })
+
+    if (this._pointerEvent) {
+      EventHandler.on(this._element, EVENT_POINTERDOWN, event => start(event))
+      EventHandler.on(this._element, EVENT_POINTERUP, event => end(event))
+
+      this._element.classList.add(CLASS_NAME_POINTER_EVENT)
+    } else {
+      EventHandler.on(this._element, EVENT_TOUCHSTART, event => start(event))
+      EventHandler.on(this._element, EVENT_TOUCHMOVE, event => move(event))
+      EventHandler.on(this._element, EVENT_TOUCHEND, event => end(event))
+    }
+  }
+
+  _keydown(event) {
+    if (/input|textarea/i.test(event.target.tagName)) {
+      return
+    }
+
+    const direction = KEY_TO_DIRECTION[event.key]
+    if (direction) {
+      event.preventDefault()
+      this._slide(direction)
+    }
+  }
+
+  _getItemIndex(element) {
+    this._items = element &amp;&amp; element.parentNode ?
+      SelectorEngine.find(SELECTOR_ITEM, element.parentNode) :
+      []
+
+    return this._items.indexOf(element)
+  }
+
+  _getItemByOrder(order, activeElement) {
+    const isNext = order === ORDER_NEXT
+    return getNextActiveElement(this._items, activeElement, isNext, this._config.wrap)
+  }
+
+  _triggerSlideEvent(relatedTarget, eventDirectionName) {
+    const targetIndex = this._getItemIndex(relatedTarget)
+    const fromIndex = this._getItemIndex(SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element))
+
+    return EventHandler.trigger(this._element, EVENT_SLIDE, {
+      relatedTarget,
+      direction: eventDirectionName,
+      from: fromIndex,
+      to: targetIndex
+    })
+  }
+
+  _setActiveIndicatorElement(element) {
+    if (this._indicatorsElement) {
+      const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE, this._indicatorsElement)
+
+      activeIndicator.classList.remove(CLASS_NAME_ACTIVE)
+      activeIndicator.removeAttribute('aria-current')
+
+      const indicators = SelectorEngine.find(SELECTOR_INDICATOR, this._indicatorsElement)
+
+      for (let i = 0; i &lt; indicators.length; i++) {
+        if (Number.parseInt(indicators[i].getAttribute('data-bs-slide-to'), 10) === this._getItemIndex(element)) {
+          indicators[i].classList.add(CLASS_NAME_ACTIVE)
+          indicators[i].setAttribute('aria-current', 'true')
+          break
+        }
+      }
+    }
+  }
+
+  _updateInterval() {
+    const element = this._activeElement || SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element)
+
+    if (!element) {
+      return
+    }
+
+    const elementInterval = Number.parseInt(element.getAttribute('data-bs-interval'), 10)
+
+    if (elementInterval) {
+      this._config.defaultInterval = this._config.defaultInterval || this._config.interval
+      this._config.interval = elementInterval
+    } else {
+      this._config.interval = this._config.defaultInterval || this._config.interval
+    }
+  }
+
+  _slide(directionOrOrder, element) {
+    const order = this._directionToOrder(directionOrOrder)
+    const activeElement = SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element)
+    const activeElementIndex = this._getItemIndex(activeElement)
+    const nextElement = element || this._getItemByOrder(order, activeElement)
+
+    const nextElementIndex = this._getItemIndex(nextElement)
+    const isCycling = Boolean(this._interval)
+
+    const isNext = order === ORDER_NEXT
+    const directionalClassName = isNext ? CLASS_NAME_START : CLASS_NAME_END
+    const orderClassName = isNext ? CLASS_NAME_NEXT : CLASS_NAME_PREV
+    const eventDirectionName = this._orderToDirection(order)
+
+    if (nextElement &amp;&amp; nextElement.classList.contains(CLASS_NAME_ACTIVE)) {
+      this._isSliding = false
+      return
+    }
+
+    if (this._isSliding) {
+      return
+    }
+
+    const slideEvent = this._triggerSlideEvent(nextElement, eventDirectionName)
+    if (slideEvent.defaultPrevented) {
+      return
+    }
+
+    if (!activeElement || !nextElement) {
+      // Some weirdness is happening, so we bail
+      return
+    }
+
+    this._isSliding = true
+
+    if (isCycling) {
+      this.pause()
+    }
+
+    this._setActiveIndicatorElement(nextElement)
+    this._activeElement = nextElement
+
+    const triggerSlidEvent = () => {
+      EventHandler.trigger(this._element, EVENT_SLID, {
+        relatedTarget: nextElement,
+        direction: eventDirectionName,
+        from: activeElementIndex,
+        to: nextElementIndex
+      })
+    }
+
+    if (this._element.classList.contains(CLASS_NAME_SLIDE)) {
+      nextElement.classList.add(orderClassName)
+
+      reflow(nextElement)
+
+      activeElement.classList.add(directionalClassName)
+      nextElement.classList.add(directionalClassName)
+
+      const completeCallBack = () => {
+        nextElement.classList.remove(directionalClassName, orderClassName)
+        nextElement.classList.add(CLASS_NAME_ACTIVE)
+
+        activeElement.classList.remove(CLASS_NAME_ACTIVE, orderClassName, directionalClassName)
+
+        this._isSliding = false
+
+        setTimeout(triggerSlidEvent, 0)
+      }
+
+      this._queueCallback(completeCallBack, activeElement, true)
+    } else {
+      activeElement.classList.remove(CLASS_NAME_ACTIVE)
+      nextElement.classList.add(CLASS_NAME_ACTIVE)
+
+      this._isSliding = false
+      triggerSlidEvent()
+    }
+
+    if (isCycling) {
+      this.cycle()
+    }
+  }
+
+  _directionToOrder(direction) {
+    if (![DIRECTION_RIGHT, DIRECTION_LEFT].includes(direction)) {
+      return direction
+    }
+
+    if (isRTL()) {
+      return direction === DIRECTION_LEFT ? ORDER_PREV : ORDER_NEXT
+    }
+
+    return direction === DIRECTION_LEFT ? ORDER_NEXT : ORDER_PREV
+  }
+
+  _orderToDirection(order) {
+    if (![ORDER_NEXT, ORDER_PREV].includes(order)) {
+      return order
+    }
+
+    if (isRTL()) {
+      return order === ORDER_PREV ? DIRECTION_LEFT : DIRECTION_RIGHT
+    }
+
+    return order === ORDER_PREV ? DIRECTION_RIGHT : DIRECTION_LEFT
+  }
+
+  // Static
+
+  static carouselInterface(element, config) {
+    const data = Carousel.getOrCreateInstance(element, config)
+
+    let { _config } = data
+    if (typeof config === 'object') {
+      _config = {
+        ..._config,
+        ...config
+      }
+    }
+
+    const action = typeof config === 'string' ? config : _config.slide
+
+    if (typeof config === 'number') {
+      data.to(config)
+    } else if (typeof action === 'string') {
+      if (typeof data[action] === 'undefined') {
+        throw new TypeError(`No method named "${action}"`)
+      }
+
+      data[action]()
+    } else if (_config.interval &amp;&amp; _config.ride) {
+      data.pause()
+      data.cycle()
+    }
+  }
+
+  static jQueryInterface(config) {
+    return this.each(function () {
+      Carousel.carouselInterface(this, config)
+    })
+  }
+
+  static dataApiClickHandler(event) {
+    const target = getElementFromSelector(this)
+
+    if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
+      return
+    }
+
+    const config = {
+      ...Manipulator.getDataAttributes(target),
+      ...Manipulator.getDataAttributes(this)
+    }
+    const slideIndex = this.getAttribute('data-bs-slide-to')
+
+    if (slideIndex) {
+      config.interval = false
+    }
+
+    Carousel.carouselInterface(target, config)
+
+    if (slideIndex) {
+      Carousel.getInstance(target).to(slideIndex)
+    }
+
+    event.preventDefault()
+  }
+}
+
+/**
+ * ------------------------------------------------------------------------
+ * Data Api implementation
+ * ------------------------------------------------------------------------
+ */
+
+EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler)
+
+EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
+  const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE)
+
+  for (let i = 0, len = carousels.length; i &lt; len; i++) {
+    Carousel.carouselInterface(carousels[i], Carousel.getInstance(carousels[i]))
+  }
+})
+
+/**
+ * ------------------------------------------------------------------------
+ * jQuery
+ * ------------------------------------------------------------------------
+ * add .Carousel to jQuery only if jQuery is present
+ */
+
+defineJQueryPlugin(Carousel)
+
+export default Carousel
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

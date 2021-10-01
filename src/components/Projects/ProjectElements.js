@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+/**
+ * @category Styled Components
+ * @subcategory ProjectElements
+ * @component
+ */
 export const ProjectsContanier = styled.div`
   height: 800px;
   display: flex;
@@ -18,6 +23,11 @@ export const ProjectsContanier = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory ProjectElements
+ * @component
+ */
 export const ProjectsWrapper = styled.div`
   max-width: 1100px;
   margin: 0 auto;
@@ -37,6 +47,11 @@ export const ProjectsWrapper = styled.div`
   }
  `;
 
+/**
+ * @category Styled Components
+ * @subcategory ProjectElements
+ * @component
+ */
 export const ProjectsCard = styled.div`
   background: #fff;
   display: flex;
@@ -66,12 +81,22 @@ export const ProjectsCard = styled.div`
   }
  `;
 
+/**
+ * @category Styled Components
+ * @subcategory ProjectElements
+ * @component
+ */
 export const ProjectsIcon = styled.img`
   height: 160px;
   width: 160px;
   margin-bottom: 10px;
  `;
 
+/**
+ * @category Styled Components
+ * @subcategory ProjectElements
+ * @component
+ */
 export const ProjectsH1 = styled.h1`
   font-size: 2.5rem;
   color: #fff;
@@ -82,11 +107,21 @@ export const ProjectsH1 = styled.h1`
   } 
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory ProjectElements
+ * @component
+ */
 export const ProjectsH2 = styled.h2`
   font-size: 1rem;
   margin-bottom: 10px;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory ProjectElements
+ * @component
+ */
 export const ProjectsP = styled.p`
   font-size: 1rem;
   text-align: center;

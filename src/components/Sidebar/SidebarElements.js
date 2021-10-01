@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa'
-import { Link as LinkRouter} from 'react-router-dom'
 import { Link as LinkScroll} from 'react-scroll'
 
+/**
+ * @category Styled Components
+ * @subcategory SidebarElements
+ * @component
+ */
 export const SidebarContainer = styled.aside`
   position: fixed;
   z-index: 999;
@@ -18,10 +22,20 @@ export const SidebarContainer = styled.aside`
   top: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory SidebarElements
+ * @component
+ */
 export const CloseIcon = styled(FaTimes)`
   color: #fff;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory SidebarElements
+ * @component
+ */
 export const Icon = styled.div`
   position: absolute;
   top: 1.2rem;
@@ -32,10 +46,20 @@ export const Icon = styled.div`
   outline: none;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory SidebarElements
+ * @component
+ */
 export const SidebarWrapper = styled.div`
   color: #fff;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory SidebarElements
+ * @component
+ */
 export const SidebarMenu = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
@@ -48,6 +72,11 @@ export const SidebarMenu = styled.ul`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory SidebarElements
+ * @component
+ */
 export const SidebarLink = styled(LinkScroll)`
   display: flex;
   align-items: center;

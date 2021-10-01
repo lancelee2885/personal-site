@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> source/bootstrap-5.0.2/js/src/offcanvas.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="Button.html">Button</a></li><li><a href="Carousel.html">Carousel</a></li><li><a href="Collapse.html">Collapse</a></li><li><a href="Dropdown.html">Dropdown</a></li><li><a href="Modal.html">Modal</a></li><li><a href="Offcanvas.html">Offcanvas</a></li><li><a href="Popover.html">Popover</a></li><li><a href="ScrollSpy.html">ScrollSpy</a></li><li><a href="Tab.html">Tab</a></li><li><a href="Toast.html">Toast</a></li><li><a href="Tooltip.html">Tooltip</a></li></ul><h3>Components</h3><ul><li><a href="App.html">App</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DATA_URL_PATTERN">DATA_URL_PATTERN</a></li><li><a href="global.html#Default$6">Default$6</a></li><li><a href="global.html#elementMap">elementMap</a></li><li><a href="global.html#getNextActiveElement">getNextActiveElement</a></li><li><a href="global.html#getUID">getUID</a></li><li><a href="global.html#getUidEvent">getUidEvent</a></li><li><a href="global.html#MAX_UID">MAX_UID</a></li><li><a href="global.html#NAME">NAME</a></li><li><a href="global.html#NAME$1">NAME$1</a></li><li><a href="global.html#NAME$2">NAME$2</a></li><li><a href="global.html#NAME$3">NAME$3</a></li><li><a href="global.html#NAME$4">NAME$4</a></li><li><a href="global.html#NAME$5">NAME$5</a></li><li><a href="global.html#NAME$6">NAME$6</a></li><li><a href="global.html#NAME$8">NAME$8</a></li><li><a href="global.html#NAME$9">NAME$9</a></li><li><a href="global.html#NAME$a">NAME$a</a></li><li><a href="global.html#NAME$b">NAME$b</a></li><li><a href="global.html#NAME$c">NAME$c</a></li><li><a href="global.html#namespaceRegex">namespaceRegex</a></li><li><a href="global.html#NODE_TEXT">NODE_TEXT</a></li><li><a href="global.html#normalizeData">normalizeData</a></li><li><a href="global.html#SAFE_URL_PATTERN">SAFE_URL_PATTERN</a></li><li><a href="global.html#SELECTOR_FIXED_CONTENT">SELECTOR_FIXED_CONTENT</a></li><li><a href="global.html#uriAttrs">uriAttrs</a></li><li><a href="global.html#VERSION">VERSION</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>source/bootstrap-5.0.2/js/src/offcanvas.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * --------------------------------------------------------------------------
+ * Bootstrap (v5.0.2): offcanvas.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * --------------------------------------------------------------------------
+ */
+
+import {
+  defineJQueryPlugin,
+  getElementFromSelector,
+  isDisabled,
+  isVisible,
+  typeCheckConfig
+} from './util/index'
+import ScrollBarHelper from './util/scrollbar'
+import EventHandler from './dom/event-handler'
+import BaseComponent from './base-component'
+import SelectorEngine from './dom/selector-engine'
+import Manipulator from './dom/manipulator'
+import Backdrop from './util/backdrop'
+
+/**
+ * ------------------------------------------------------------------------
+ * Constants
+ * ------------------------------------------------------------------------
+ */
+
+const NAME = 'offcanvas'
+const DATA_KEY = 'bs.offcanvas'
+const EVENT_KEY = `.${DATA_KEY}`
+const DATA_API_KEY = '.data-api'
+const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
+const ESCAPE_KEY = 'Escape'
+
+const Default = {
+  backdrop: true,
+  keyboard: true,
+  scroll: false
+}
+
+const DefaultType = {
+  backdrop: 'boolean',
+  keyboard: 'boolean',
+  scroll: 'boolean'
+}
+
+const CLASS_NAME_SHOW = 'show'
+const OPEN_SELECTOR = '.offcanvas.show'
+
+const EVENT_SHOW = `show${EVENT_KEY}`
+const EVENT_SHOWN = `shown${EVENT_KEY}`
+const EVENT_HIDE = `hide${EVENT_KEY}`
+const EVENT_HIDDEN = `hidden${EVENT_KEY}`
+const EVENT_FOCUSIN = `focusin${EVENT_KEY}`
+const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
+const EVENT_CLICK_DISMISS = `click.dismiss${EVENT_KEY}`
+const EVENT_KEYDOWN_DISMISS = `keydown.dismiss${EVENT_KEY}`
+
+const SELECTOR_DATA_DISMISS = '[data-bs-dismiss="offcanvas"]'
+const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="offcanvas"]'
+
+/**
+ * ------------------------------------------------------------------------
+ * Class Definition
+ * ------------------------------------------------------------------------
+ */
+
+class Offcanvas extends BaseComponent {
+  constructor(element, config) {
+    super(element)
+
+    this._config = this._getConfig(config)
+    this._isShown = false
+    this._backdrop = this._initializeBackDrop()
+    this._addEventListeners()
+  }
+
+  // Getters
+
+  static get NAME() {
+    return NAME
+  }
+
+  static get Default() {
+    return Default
+  }
+
+  // Public
+
+  toggle(relatedTarget) {
+    return this._isShown ? this.hide() : this.show(relatedTarget)
+  }
+
+  show(relatedTarget) {
+    if (this._isShown) {
+      return
+    }
+
+    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW, { relatedTarget })
+
+    if (showEvent.defaultPrevented) {
+      return
+    }
+
+    this._isShown = true
+    this._element.style.visibility = 'visible'
+
+    this._backdrop.show()
+
+    if (!this._config.scroll) {
+      new ScrollBarHelper().hide()
+      this._enforceFocusOnElement(this._element)
+    }
+
+    this._element.removeAttribute('aria-hidden')
+    this._element.setAttribute('aria-modal', true)
+    this._element.setAttribute('role', 'dialog')
+    this._element.classList.add(CLASS_NAME_SHOW)
+
+    const completeCallBack = () => {
+      EventHandler.trigger(this._element, EVENT_SHOWN, { relatedTarget })
+    }
+
+    this._queueCallback(completeCallBack, this._element, true)
+  }
+
+  hide() {
+    if (!this._isShown) {
+      return
+    }
+
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE)
+
+    if (hideEvent.defaultPrevented) {
+      return
+    }
+
+    EventHandler.off(document, EVENT_FOCUSIN)
+    this._element.blur()
+    this._isShown = false
+    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._backdrop.hide()
+
+    const completeCallback = () => {
+      this._element.setAttribute('aria-hidden', true)
+      this._element.removeAttribute('aria-modal')
+      this._element.removeAttribute('role')
+      this._element.style.visibility = 'hidden'
+
+      if (!this._config.scroll) {
+        new ScrollBarHelper().reset()
+      }
+
+      EventHandler.trigger(this._element, EVENT_HIDDEN)
+    }
+
+    this._queueCallback(completeCallback, this._element, true)
+  }
+
+  dispose() {
+    this._backdrop.dispose()
+    super.dispose()
+    EventHandler.off(document, EVENT_FOCUSIN)
+  }
+
+  // Private
+
+  _getConfig(config) {
+    config = {
+      ...Default,
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
+    }
+    typeCheckConfig(NAME, config, DefaultType)
+    return config
+  }
+
+  _initializeBackDrop() {
+    return new Backdrop({
+      isVisible: this._config.backdrop,
+      isAnimated: true,
+      rootElement: this._element.parentNode,
+      clickCallback: () => this.hide()
+    })
+  }
+
+  _enforceFocusOnElement(element) {
+    EventHandler.off(document, EVENT_FOCUSIN) // guard against infinite focus loop
+    EventHandler.on(document, EVENT_FOCUSIN, event => {
+      if (document !== event.target &amp;&amp;
+        element !== event.target &amp;&amp;
+        !element.contains(event.target)) {
+        element.focus()
+      }
+    })
+    element.focus()
+  }
+
+  _addEventListeners() {
+    EventHandler.on(this._element, EVENT_CLICK_DISMISS, SELECTOR_DATA_DISMISS, () => this.hide())
+
+    EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
+      if (this._config.keyboard &amp;&amp; event.key === ESCAPE_KEY) {
+        this.hide()
+      }
+    })
+  }
+
+  // Static
+
+  static jQueryInterface(config) {
+    return this.each(function () {
+      const data = Offcanvas.getOrCreateInstance(this, config)
+
+      if (typeof config !== 'string') {
+        return
+      }
+
+      if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+        throw new TypeError(`No method named "${config}"`)
+      }
+
+      data[config](this)
+    })
+  }
+}
+
+/**
+ * ------------------------------------------------------------------------
+ * Data Api implementation
+ * ------------------------------------------------------------------------
+ */
+
+EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
+  const target = getElementFromSelector(this)
+
+  if (['A', 'AREA'].includes(this.tagName)) {
+    event.preventDefault()
+  }
+
+  if (isDisabled(this)) {
+    return
+  }
+
+  EventHandler.one(target, EVENT_HIDDEN, () => {
+    // focus on trigger when it is closed
+    if (isVisible(this)) {
+      this.focus()
+    }
+  })
+
+  // avoid conflict when clicking a toggler of an offcanvas, while another is open
+  const allReadyOpen = SelectorEngine.findOne(OPEN_SELECTOR)
+  if (allReadyOpen &amp;&amp; allReadyOpen !== target) {
+    Offcanvas.getInstance(allReadyOpen).hide()
+  }
+
+  const data = Offcanvas.getOrCreateInstance(target)
+  data.toggle(this)
+})
+
+EventHandler.on(window, EVENT_LOAD_DATA_API, () =>
+  SelectorEngine.find(OPEN_SELECTOR).forEach(el => Offcanvas.getOrCreateInstance(el).show())
+)
+
+/**
+ * ------------------------------------------------------------------------
+ * jQuery
+ * ------------------------------------------------------------------------
+ */
+
+defineJQueryPlugin(Offcanvas)
+
+export default Offcanvas
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

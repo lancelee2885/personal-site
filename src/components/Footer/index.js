@@ -11,6 +11,11 @@ import {
   WebsiteRights
 } from './FootElements'
 
+/** Footer of the app.
+ * 
+ * @category React Components
+ * @component
+ */
 function Footer() {
   return (
     <FooterContainer>

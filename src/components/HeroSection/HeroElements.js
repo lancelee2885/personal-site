@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md'
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const HeroCountainer = styled.div`
   background: #0c0c0c;
   display: flex;
@@ -24,6 +29,11 @@ export const HeroCountainer = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const HeroBg = styled.div`
   position: absolute;
   top: 0;
@@ -35,6 +45,11 @@ export const HeroBg = styled.div`
   overflow: hidden;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const VideoBg = styled.video`
   width: 100%;
   height: 100%;
@@ -44,6 +59,11 @@ export const VideoBg = styled.video`
   filter: opacity(0.3);
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const HeroContent = styled.div`
   z-index: 3;
   max-width: 1200px;
@@ -54,6 +74,11 @@ export const HeroContent = styled.div`
   align-items: center;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const HeroH1 = styled.div`
   color: #fff;
   font-size: 48px;
@@ -68,6 +93,11 @@ export const HeroH1 = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const HeroP = styled.div`
   margin-top: 24px;
   color: #fff;
@@ -84,6 +114,11 @@ export const HeroP = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const HeroBtnWrapper = styled.div`
   margin-top: 32px;
   display: flex;
@@ -91,11 +126,21 @@ export const HeroBtnWrapper = styled.div`
   align-items: center;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const ArrowForward = styled(MdArrowForward)`
   margin-left: 8px;
   font-size: 20px;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory HeroElements
+ * @component
+ */
 export const ArrowRight = styled(MdKeyboardArrowRight)`
   margin-left: 8px;
   font-size: 20px;

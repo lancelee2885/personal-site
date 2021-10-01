@@ -13,7 +13,15 @@ import {
 } from './HeroElements'
 import { Button } from '../ButtonElement'
 
-
+/** HeroSection: The section on the landing page containing background video 
+ * and a brief description.
+ * 
+ * States: 
+ *  - hover: used for display different information upon hovering onto something.
+ * 
+ * @category React Components
+ * @component 
+ */
 function HeroSection() {
   const [hover, setHover] = useState(false);
 

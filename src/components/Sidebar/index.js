@@ -6,6 +6,15 @@ import { SidebarContainer,
          SidebarMenu,
          SidebarLink } from './SidebarElements'
 
+/** Sidebar: Navigation bar when top navbar it collapsed due to screen size
+ * 
+ * Props:
+ *  - isOpen: for controlling if a side bar should be shown
+ *  - toggle: function rec'd from parent(Home) to determine if Sidebar should be present or hidden
+ *  
+ * @category React Components
+ * @component
+ */
 const Sidebar = ({ isOpen, toggle }) => {
   return (
     <>

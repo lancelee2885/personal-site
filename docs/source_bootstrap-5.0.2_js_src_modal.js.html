@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> source/bootstrap-5.0.2/js/src/modal.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="Button.html">Button</a></li><li><a href="Carousel.html">Carousel</a></li><li><a href="Collapse.html">Collapse</a></li><li><a href="Dropdown.html">Dropdown</a></li><li><a href="Modal.html">Modal</a></li><li><a href="Offcanvas.html">Offcanvas</a></li><li><a href="Popover.html">Popover</a></li><li><a href="ScrollSpy.html">ScrollSpy</a></li><li><a href="Tab.html">Tab</a></li><li><a href="Toast.html">Toast</a></li><li><a href="Tooltip.html">Tooltip</a></li></ul><h3>Components</h3><ul><li><a href="App.html">App</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DATA_URL_PATTERN">DATA_URL_PATTERN</a></li><li><a href="global.html#Default$6">Default$6</a></li><li><a href="global.html#elementMap">elementMap</a></li><li><a href="global.html#getNextActiveElement">getNextActiveElement</a></li><li><a href="global.html#getUID">getUID</a></li><li><a href="global.html#getUidEvent">getUidEvent</a></li><li><a href="global.html#MAX_UID">MAX_UID</a></li><li><a href="global.html#NAME">NAME</a></li><li><a href="global.html#NAME$1">NAME$1</a></li><li><a href="global.html#NAME$2">NAME$2</a></li><li><a href="global.html#NAME$3">NAME$3</a></li><li><a href="global.html#NAME$4">NAME$4</a></li><li><a href="global.html#NAME$5">NAME$5</a></li><li><a href="global.html#NAME$6">NAME$6</a></li><li><a href="global.html#NAME$8">NAME$8</a></li><li><a href="global.html#NAME$9">NAME$9</a></li><li><a href="global.html#NAME$a">NAME$a</a></li><li><a href="global.html#NAME$b">NAME$b</a></li><li><a href="global.html#NAME$c">NAME$c</a></li><li><a href="global.html#namespaceRegex">namespaceRegex</a></li><li><a href="global.html#NODE_TEXT">NODE_TEXT</a></li><li><a href="global.html#normalizeData">normalizeData</a></li><li><a href="global.html#SAFE_URL_PATTERN">SAFE_URL_PATTERN</a></li><li><a href="global.html#SELECTOR_FIXED_CONTENT">SELECTOR_FIXED_CONTENT</a></li><li><a href="global.html#uriAttrs">uriAttrs</a></li><li><a href="global.html#VERSION">VERSION</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>source/bootstrap-5.0.2/js/src/modal.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * --------------------------------------------------------------------------
+ * Bootstrap (v5.0.2): modal.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * --------------------------------------------------------------------------
+ */
+
+import {
+  defineJQueryPlugin,
+  getElementFromSelector,
+  isRTL,
+  isVisible,
+  reflow,
+  typeCheckConfig
+} from './util/index'
+import EventHandler from './dom/event-handler'
+import Manipulator from './dom/manipulator'
+import SelectorEngine from './dom/selector-engine'
+import ScrollBarHelper from './util/scrollbar'
+import BaseComponent from './base-component'
+import Backdrop from './util/backdrop'
+
+/**
+ * ------------------------------------------------------------------------
+ * Constants
+ * ------------------------------------------------------------------------
+ */
+
+const NAME = 'modal'
+const DATA_KEY = 'bs.modal'
+const EVENT_KEY = `.${DATA_KEY}`
+const DATA_API_KEY = '.data-api'
+const ESCAPE_KEY = 'Escape'
+
+const Default = {
+  backdrop: true,
+  keyboard: true,
+  focus: true
+}
+
+const DefaultType = {
+  backdrop: '(boolean|string)',
+  keyboard: 'boolean',
+  focus: 'boolean'
+}
+
+const EVENT_HIDE = `hide${EVENT_KEY}`
+const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY}`
+const EVENT_HIDDEN = `hidden${EVENT_KEY}`
+const EVENT_SHOW = `show${EVENT_KEY}`
+const EVENT_SHOWN = `shown${EVENT_KEY}`
+const EVENT_FOCUSIN = `focusin${EVENT_KEY}`
+const EVENT_RESIZE = `resize${EVENT_KEY}`
+const EVENT_CLICK_DISMISS = `click.dismiss${EVENT_KEY}`
+const EVENT_KEYDOWN_DISMISS = `keydown.dismiss${EVENT_KEY}`
+const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY}`
+const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY}`
+const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
+
+const CLASS_NAME_OPEN = 'modal-open'
+const CLASS_NAME_FADE = 'fade'
+const CLASS_NAME_SHOW = 'show'
+const CLASS_NAME_STATIC = 'modal-static'
+
+const SELECTOR_DIALOG = '.modal-dialog'
+const SELECTOR_MODAL_BODY = '.modal-body'
+const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="modal"]'
+const SELECTOR_DATA_DISMISS = '[data-bs-dismiss="modal"]'
+
+/**
+ * ------------------------------------------------------------------------
+ * Class Definition
+ * ------------------------------------------------------------------------
+ */
+
+class Modal extends BaseComponent {
+  constructor(element, config) {
+    super(element)
+
+    this._config = this._getConfig(config)
+    this._dialog = SelectorEngine.findOne(SELECTOR_DIALOG, this._element)
+    this._backdrop = this._initializeBackDrop()
+    this._isShown = false
+    this._ignoreBackdropClick = false
+    this._isTransitioning = false
+    this._scrollBar = new ScrollBarHelper()
+  }
+
+  // Getters
+
+  static get Default() {
+    return Default
+  }
+
+  static get NAME() {
+    return NAME
+  }
+
+  // Public
+
+  toggle(relatedTarget) {
+    return this._isShown ? this.hide() : this.show(relatedTarget)
+  }
+
+  show(relatedTarget) {
+    if (this._isShown || this._isTransitioning) {
+      return
+    }
+
+    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW, {
+      relatedTarget
+    })
+
+    if (showEvent.defaultPrevented) {
+      return
+    }
+
+    this._isShown = true
+
+    if (this._isAnimated()) {
+      this._isTransitioning = true
+    }
+
+    this._scrollBar.hide()
+
+    document.body.classList.add(CLASS_NAME_OPEN)
+
+    this._adjustDialog()
+
+    this._setEscapeEvent()
+    this._setResizeEvent()
+
+    EventHandler.on(this._element, EVENT_CLICK_DISMISS, SELECTOR_DATA_DISMISS, event => this.hide(event))
+
+    EventHandler.on(this._dialog, EVENT_MOUSEDOWN_DISMISS, () => {
+      EventHandler.one(this._element, EVENT_MOUSEUP_DISMISS, event => {
+        if (event.target === this._element) {
+          this._ignoreBackdropClick = true
+        }
+      })
+    })
+
+    this._showBackdrop(() => this._showElement(relatedTarget))
+  }
+
+  hide(event) {
+    if (event &amp;&amp; ['A', 'AREA'].includes(event.target.tagName)) {
+      event.preventDefault()
+    }
+
+    if (!this._isShown || this._isTransitioning) {
+      return
+    }
+
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE)
+
+    if (hideEvent.defaultPrevented) {
+      return
+    }
+
+    this._isShown = false
+    const isAnimated = this._isAnimated()
+
+    if (isAnimated) {
+      this._isTransitioning = true
+    }
+
+    this._setEscapeEvent()
+    this._setResizeEvent()
+
+    EventHandler.off(document, EVENT_FOCUSIN)
+
+    this._element.classList.remove(CLASS_NAME_SHOW)
+
+    EventHandler.off(this._element, EVENT_CLICK_DISMISS)
+    EventHandler.off(this._dialog, EVENT_MOUSEDOWN_DISMISS)
+
+    this._queueCallback(() => this._hideModal(), this._element, isAnimated)
+  }
+
+  dispose() {
+    [window, this._dialog]
+      .forEach(htmlElement => EventHandler.off(htmlElement, EVENT_KEY))
+
+    this._backdrop.dispose()
+    super.dispose()
+
+    /**
+     * `document` has 2 events `EVENT_FOCUSIN` and `EVENT_CLICK_DATA_API`
+     * Do not move `document` in `htmlElements` array
+     * It will remove `EVENT_CLICK_DATA_API` event that should remain
+     */
+    EventHandler.off(document, EVENT_FOCUSIN)
+  }
+
+  handleUpdate() {
+    this._adjustDialog()
+  }
+
+  // Private
+
+  _initializeBackDrop() {
+    return new Backdrop({
+      isVisible: Boolean(this._config.backdrop), // 'static' option will be translated to true, and booleans will keep their value
+      isAnimated: this._isAnimated()
+    })
+  }
+
+  _getConfig(config) {
+    config = {
+      ...Default,
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
+    }
+    typeCheckConfig(NAME, config, DefaultType)
+    return config
+  }
+
+  _showElement(relatedTarget) {
+    const isAnimated = this._isAnimated()
+    const modalBody = SelectorEngine.findOne(SELECTOR_MODAL_BODY, this._dialog)
+
+    if (!this._element.parentNode || this._element.parentNode.nodeType !== Node.ELEMENT_NODE) {
+      // Don't move modal's DOM position
+      document.body.appendChild(this._element)
+    }
+
+    this._element.style.display = 'block'
+    this._element.removeAttribute('aria-hidden')
+    this._element.setAttribute('aria-modal', true)
+    this._element.setAttribute('role', 'dialog')
+    this._element.scrollTop = 0
+
+    if (modalBody) {
+      modalBody.scrollTop = 0
+    }
+
+    if (isAnimated) {
+      reflow(this._element)
+    }
+
+    this._element.classList.add(CLASS_NAME_SHOW)
+
+    if (this._config.focus) {
+      this._enforceFocus()
+    }
+
+    const transitionComplete = () => {
+      if (this._config.focus) {
+        this._element.focus()
+      }
+
+      this._isTransitioning = false
+      EventHandler.trigger(this._element, EVENT_SHOWN, {
+        relatedTarget
+      })
+    }
+
+    this._queueCallback(transitionComplete, this._dialog, isAnimated)
+  }
+
+  _enforceFocus() {
+    EventHandler.off(document, EVENT_FOCUSIN) // guard against infinite focus loop
+    EventHandler.on(document, EVENT_FOCUSIN, event => {
+      if (document !== event.target &amp;&amp;
+          this._element !== event.target &amp;&amp;
+          !this._element.contains(event.target)) {
+        this._element.focus()
+      }
+    })
+  }
+
+  _setEscapeEvent() {
+    if (this._isShown) {
+      EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
+        if (this._config.keyboard &amp;&amp; event.key === ESCAPE_KEY) {
+          event.preventDefault()
+          this.hide()
+        } else if (!this._config.keyboard &amp;&amp; event.key === ESCAPE_KEY) {
+          this._triggerBackdropTransition()
+        }
+      })
+    } else {
+      EventHandler.off(this._element, EVENT_KEYDOWN_DISMISS)
+    }
+  }
+
+  _setResizeEvent() {
+    if (this._isShown) {
+      EventHandler.on(window, EVENT_RESIZE, () => this._adjustDialog())
+    } else {
+      EventHandler.off(window, EVENT_RESIZE)
+    }
+  }
+
+  _hideModal() {
+    this._element.style.display = 'none'
+    this._element.setAttribute('aria-hidden', true)
+    this._element.removeAttribute('aria-modal')
+    this._element.removeAttribute('role')
+    this._isTransitioning = false
+    this._backdrop.hide(() => {
+      document.body.classList.remove(CLASS_NAME_OPEN)
+      this._resetAdjustments()
+      this._scrollBar.reset()
+      EventHandler.trigger(this._element, EVENT_HIDDEN)
+    })
+  }
+
+  _showBackdrop(callback) {
+    EventHandler.on(this._element, EVENT_CLICK_DISMISS, event => {
+      if (this._ignoreBackdropClick) {
+        this._ignoreBackdropClick = false
+        return
+      }
+
+      if (event.target !== event.currentTarget) {
+        return
+      }
+
+      if (this._config.backdrop === true) {
+        this.hide()
+      } else if (this._config.backdrop === 'static') {
+        this._triggerBackdropTransition()
+      }
+    })
+
+    this._backdrop.show(callback)
+  }
+
+  _isAnimated() {
+    return this._element.classList.contains(CLASS_NAME_FADE)
+  }
+
+  _triggerBackdropTransition() {
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED)
+    if (hideEvent.defaultPrevented) {
+      return
+    }
+
+    const { classList, scrollHeight, style } = this._element
+    const isModalOverflowing = scrollHeight > document.documentElement.clientHeight
+
+    // return if the following background transition hasn't yet completed
+    if ((!isModalOverflowing &amp;&amp; style.overflowY === 'hidden') || classList.contains(CLASS_NAME_STATIC)) {
+      return
+    }
+
+    if (!isModalOverflowing) {
+      style.overflowY = 'hidden'
+    }
+
+    classList.add(CLASS_NAME_STATIC)
+    this._queueCallback(() => {
+      classList.remove(CLASS_NAME_STATIC)
+      if (!isModalOverflowing) {
+        this._queueCallback(() => {
+          style.overflowY = ''
+        }, this._dialog)
+      }
+    }, this._dialog)
+
+    this._element.focus()
+  }
+
+  // ----------------------------------------------------------------------
+  // the following methods are used to handle overflowing modals
+  // ----------------------------------------------------------------------
+
+  _adjustDialog() {
+    const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight
+    const scrollbarWidth = this._scrollBar.getWidth()
+    const isBodyOverflowing = scrollbarWidth > 0
+
+    if ((!isBodyOverflowing &amp;&amp; isModalOverflowing &amp;&amp; !isRTL()) || (isBodyOverflowing &amp;&amp; !isModalOverflowing &amp;&amp; isRTL())) {
+      this._element.style.paddingLeft = `${scrollbarWidth}px`
+    }
+
+    if ((isBodyOverflowing &amp;&amp; !isModalOverflowing &amp;&amp; !isRTL()) || (!isBodyOverflowing &amp;&amp; isModalOverflowing &amp;&amp; isRTL())) {
+      this._element.style.paddingRight = `${scrollbarWidth}px`
+    }
+  }
+
+  _resetAdjustments() {
+    this._element.style.paddingLeft = ''
+    this._element.style.paddingRight = ''
+  }
+
+  // Static
+
+  static jQueryInterface(config, relatedTarget) {
+    return this.each(function () {
+      const data = Modal.getOrCreateInstance(this, config)
+
+      if (typeof config !== 'string') {
+        return
+      }
+
+      if (typeof data[config] === 'undefined') {
+        throw new TypeError(`No method named "${config}"`)
+      }
+
+      data[config](relatedTarget)
+    })
+  }
+}
+
+/**
+ * ------------------------------------------------------------------------
+ * Data Api implementation
+ * ------------------------------------------------------------------------
+ */
+
+EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
+  const target = getElementFromSelector(this)
+
+  if (['A', 'AREA'].includes(this.tagName)) {
+    event.preventDefault()
+  }
+
+  EventHandler.one(target, EVENT_SHOW, showEvent => {
+    if (showEvent.defaultPrevented) {
+      // only register focus restorer if modal will actually get shown
+      return
+    }
+
+    EventHandler.one(target, EVENT_HIDDEN, () => {
+      if (isVisible(this)) {
+        this.focus()
+      }
+    })
+  })
+
+  const data = Modal.getOrCreateInstance(target)
+
+  data.toggle(this)
+})
+
+/**
+ * ------------------------------------------------------------------------
+ * jQuery
+ * ------------------------------------------------------------------------
+ * add .Modal to jQuery only if jQuery is present
+ */
+
+defineJQueryPlugin(Modal)
+
+export default Modal
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

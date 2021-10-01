@@ -2,6 +2,11 @@ import styled from 'styled-components'
 import { Link as LinkScroll } from 'react-scroll'
 import { Link as LinkRouter} from 'react-router-dom'
 
+/**
+ * @category Styled Components
+ * @subcategory ButtonElements
+ * @component
+ */
 export const Button = styled(LinkScroll)`
   border-radius: 50px;
   background: ${({primary}) => (primary ? '#01BF71' : '#010606')};
@@ -27,6 +32,11 @@ export const Button = styled(LinkScroll)`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory ButtonElements
+ * @component
+ */
 export const ButtonExternal = styled(LinkRouter)`
   border-radius: 50px;
   background: ${({primary}) => (primary ? '#01BF71' : '#010606')};

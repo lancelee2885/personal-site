@@ -2,10 +2,20 @@ import styled from 'styled-components'
 import { Link as LinkRouter } from 'react-router-dom'
 import { Link as LinkScroll } from 'react-scroll'
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterContainer = styled.footer`
   background: #101522;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterWrap = styled.div`
   padding: 48px 24px;
   display: flex;
@@ -16,6 +26,11 @@ export const FooterWrap = styled.div`
   margin: 0 auto;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterLinksContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -25,6 +40,11 @@ export const FooterLinksContainer = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterLinksWrapper = styled.div`
   display: flex;
 
@@ -33,6 +53,11 @@ export const FooterLinksWrapper = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterLinkItems = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,11 +75,21 @@ export const FooterLinkItems = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterLinkTitle = styled.h1`
   font-size: 14px;
   margin-bottom: 16px;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterLink = styled(LinkRouter)`
   color: #fff;
   text-decoration: none;
@@ -67,6 +102,11 @@ export const FooterLink = styled(LinkRouter)`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const FooterLinkScroll = styled(LinkScroll)`
   color: #fff;
   text-decoration: none;
@@ -80,6 +120,11 @@ export const FooterLinkScroll = styled(LinkScroll)`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory FootElements
+ * @component
+ */
 export const WebsiteRights = styled.small`
   color: #fff;
   margin-bottom: 16px;

@@ -2,7 +2,11 @@ import styled from 'styled-components'
 import { Link as LinkRouter } from 'react-router-dom'
 import { Link as LinkScroll } from 'react-scroll'
 
-
+/**
+ * @category Styled Components
+ * @subcategory NavbarElements
+ * @component
+ */
 export const Nav = styled.nav`
   background: ${({scrollNav}) => (scrollNav ? 'gray' : 'transparent')};
   opacity: ${({scrollNav}) => (scrollNav ? '0.5' : '1')};
@@ -20,7 +24,11 @@ export const Nav = styled.nav`
     transition: 0.8s all ease-in;
   }
 `
-
+/**
+ * @category Styled Components
+ * @subcategory NavbarElements
+ * @component
+ */
 export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -30,7 +38,11 @@ export const NavbarContainer = styled.div`
   padding: 0 24px;
   max-width: 1100px;
 `
-
+/**
+ * @category Styled Components
+ * @subcategory NavbarElements
+ * @component
+ */
 export const NavLogo = styled(LinkRouter)`
    color: #fff;
    justify-self: flex-start;
@@ -42,7 +54,11 @@ export const NavLogo = styled(LinkRouter)`
    font-weight: bold;
    text-decoration: none;
 `
-
+/**
+ * @category Styled Components
+ * @subcategory NavbarElements
+ * @component
+ */
 export const MobileIcon = styled.div`
   display: none;
 
@@ -57,7 +73,11 @@ export const MobileIcon = styled.div`
     color: #fff;
   }
 `
-
+/**
+ * @category Styled Components
+ * @subcategory NavbarElements
+ * @component
+ */
 export const NavMenu = styled.ul`
   display: flex;
   align-items: center;
@@ -71,10 +91,19 @@ export const NavMenu = styled.ul`
   }
 `
 
+/**
+ * @category Styled Components
+ * @subcategory NavbarElements
+ * @component
+ */
 export const NavItem = styled.li`
   height: 80px;
 `
-
+/**
+ * @category Styled Components
+ * @subcategory NavbarElements
+ * @component
+ */
 export const NavLinks = styled(LinkScroll)`
   color: #fff;
   display: flex;

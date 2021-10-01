@@ -14,10 +14,25 @@ import {
 } from './NavbarElements'
 import logo from '../../images/LanceLogo-removebg-preview.png'
 
+/** Navbar: Navigation bar appears and stays on top of the page throughout scrolling.
+ * 
+ * Props:
+ *  - toggle: function rec'd from parent(Home).
+ * 
+ * States:
+ *  - scrollNav: When scroll over a certain distance, it will cause a state change.
+ * 
+ * @category React Components
+ * @component
+ */
 function Navbar({ toggle }) {
 
   const [scrollNav, setScrollNav] = useState(false);
 
+   /**
+    * When scroll over 80px vertically from top to bottom, 
+    * it triggers state change of scrollNav.
+    */
   function changeNav() {
     if (window.scrollY >= 80) {
       setScrollNav(true);

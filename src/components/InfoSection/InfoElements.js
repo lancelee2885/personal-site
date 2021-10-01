@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const InfoContainer = styled.div`
   color: #fff;
   background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#010606')};
@@ -9,6 +14,11 @@ export const InfoContainer = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const InfoWrapper = styled.div`
   display: grid;
   z-index: 1;
@@ -25,6 +35,11 @@ export const InfoWrapper = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const InfoRow = styled.div`
   display: grid;
   grid-auto-columns: minmax(auto, 1fr);
@@ -36,24 +51,44 @@ export const InfoRow = styled.div`
   }
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const Column1 = styled.div`
   margin-bottom: 15px;
   padding: 0 15px;
   grid-area: col1;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const Column2 = styled.div`
   margin-bottom: 15px;
   padding: 0 15px;
   grid-area: col2;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const TextWrapper = styled.div`
   max-width: 540px;
   padding-top: 0;
   padding-bottom: 60px;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const TopLine = styled.p`
   color: #01bf71;
   font-size: 16px;
@@ -64,6 +99,11 @@ export const TopLine = styled.p`
   margin-bottom: 16px;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const Heading = styled.h1`
   margin-bottom: 24px;
   font-size: 48px;
@@ -76,6 +116,11 @@ export const Heading = styled.h1`
   }
 `;
  
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const Subtitle = styled.p`
   max-width: 440px;
   margin-bottom: 35px;
@@ -84,16 +129,31 @@ export const Subtitle = styled.p`
   color: ${({darkText}) => (darkText ? '#010606' : '#fff')};
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const BtnWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const ImgWrapper = styled.div`
   max-width: 555px;
   height: 100%;
 `;
 
+/**
+ * @category Styled Components
+ * @subcategory InfoElements
+ * @component
+ */
 export const Img = styled.img`
   width: 80%;
   margin: 0 0 40px 40px;

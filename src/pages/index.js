@@ -8,9 +8,22 @@ import Projects from '../components/Projects';
 import Sidebar from '../components/Sidebar'
 import SkillSection from '../components/SkillSection';
 
+/** Home: Component for combining all of sub components
+ * 
+ * States:
+ *  - isOpen: a state being passing down to children components
+ *    determining if sidebar or navbar should be open.
+ * 
+ * @category React Components
+ * @component
+ * 
+ */
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  /**
+   * A function set isOpen either to true or false depending on current isOpen.
+   */
   function toggle() {
     setIsOpen(!isOpen);
   }

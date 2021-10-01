@@ -14,7 +14,30 @@ import {
   SkillWrapper
 } from '../InfoSection/InfoElements'
 
-
+/** InfoSection: Renders about section of the application
+ * 
+ * Props: props contains {
+  lightBg,
+  id,
+  imgStart,
+  topLine,
+  lightText,
+  headLine,
+  darkText,
+  description1,
+  description2,
+  description3,
+  img,
+  alt,
+  shadow,
+  langSkills,
+  frameworkSkills,
+  tools,
+  }. These properties are necessary for displaying data and styles on page.
+ *  
+ * @category React Components
+ * @component
+ */
 function SkillSection({
   lightBg,
   id,
