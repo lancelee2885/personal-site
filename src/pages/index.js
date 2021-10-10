@@ -6,6 +6,7 @@ import { About, Skills } from '../components/InfoSection/Data';
 import Navbar from '../components/Navbar'
 import Projects from '../components/Projects';
 import Sidebar from '../components/Sidebar'
+import SignupFrom from '../components/SignupForm';
 import SkillSection from '../components/SkillSection';
 
 /** Home: Component for combining all of sub components
