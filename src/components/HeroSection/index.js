@@ -42,7 +42,7 @@ function HeroSection() {
         <HeroP>
           A software engineer and scientist.
           <hr />
-          <a className='blog-link' href='https://feed.leehplance.com'>Check out my newly deployed blogging platform!</a>
+          <a className='blog-link' href='https://feed.leehplance.com' target="_blank" rel="noopener noreferrer">Check out my newly deployed blogging platform!</a>
         </HeroP>
         <HeroBtnWrapper>
           <Button to='about' 
