@@ -69,7 +69,7 @@ function Projects() {
               <a href='https://github.com/lancelee2885/warbler'>
                 <i className="fab fa-github-square fa-2x iconCard"></i>
               </a>
-              <a href='https://warbler-ivan-lance.herokuapp.com/'>
+              <a href='https://lance-warbler.herokuapp.com'>
                 <i class="fas fa-window-maximize fa-2x iconCard" ></i>
               </a>
             </ProjectsP>
