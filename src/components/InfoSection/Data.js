@@ -7,17 +7,11 @@ export const About = {
   lightBg: true,
   lightText: false,
   lightTextDesc: false,
-  topLine: 'About myself',
-  description: `My name is Lance. The picture on the side is Lui. I am currently a software engineer. 
-                My journey of programming started at Rithm School and during 
-                that time I was obsessed with the beauty of programming, 
-                especially problem solving and designing features that can be used daily.
-                `,
-  description2: `As a programmer, I also have a Bachelor degree in Biology and had worked in industrial for 2 years. 
-                 I believed both fields are very similar in terms of critical thinking and project management. If you would like 
-                 to know more about me feel free to hit any links below.`,
+  topLine: 'About Me',
+  description: `Strong focus on backend development. Proficient in Python, Django, Flask, JavaScript, and working with microservices architecture on Kubernetes.`,
+  description2: `I am Lance Lee, an experienced full-stack software engineer with a strong focus on backend development. Proficient in Python, Django, Flask, JavaScript, and working with microservices architecture on Kubernetes. Key achievements include developing and maintaining robust, scalable microservices using gRPC and Kubernetes, optimizing and automating backend workflows such as database migrations, collaborating cross-functionally to implement features, resolve issues, and drive product improvements, designing and building RESTful APIs to support frontend functionality, and writing comprehensive unit and integration tests to ensure code quality and reliability. Passionate about crafting efficient, secure, and high-performance backend systems, I am constantly seeking opportunities to learn and grow as an engineer.`,
   buttonLabel: 'Here is my most recent resume',
-  buttonLink: 'https://personal-site-lance.s3.us-west-1.amazonaws.com/lance-resume-2021.pdf',
+  buttonLink: 'https://personal-site-lance.s3.us-west-1.amazonaws.com/lance-2024.pdf',
   imgStart: true,
   img:  lui, 
   alt: 'lui the cat',

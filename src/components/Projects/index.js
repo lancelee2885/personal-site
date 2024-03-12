@@ -36,7 +36,7 @@ function Projects() {
   return (
     <ProjectsContanier id='projects'>
       <ProjectsH1>
-        My Projects
+        Recent Projects
       </ProjectsH1>
       <ProjectsWrapper>
         <ProjectsCard onMouseEnter={() => setIsShown1(true)}
@@ -51,9 +51,6 @@ function Projects() {
               <a href='https://github.com/lancelee2885/react-jobly'>
                 <i className="fab fa-github-square fa-2x iconCard"></i>
               </a>
-              <a href='http://jobly-lance.surge.sh/'>
-                <i class="fas fa-window-maximize fa-2x iconCard" ></i>
-              </a>
             </ProjectsP>
           </Collapse>
         </ProjectsCard>
@@ -64,13 +61,10 @@ function Projects() {
           <ProjectsH2>Warbler</ProjectsH2>
           <Collapse in={isShown2}>
             <ProjectsP>
-              A Twitter clone using Javascript(AJAX), Python, Flask and PostgreSQL
+              A classic snake game built with GO to familiarize with Go routine.
               <hr />
-              <a href='https://github.com/lancelee2885/warbler'>
+              <a href='https://github.com/lancelee2885/go-snake'>
                 <i className="fab fa-github-square fa-2x iconCard"></i>
-              </a>
-              <a href='https://lance-warbler.herokuapp.com'>
-                <i class="fas fa-window-maximize fa-2x iconCard" ></i>
               </a>
             </ProjectsP>
           </Collapse>
